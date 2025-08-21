@@ -7,8 +7,8 @@ This repository is a collection of configuration files that define a single `n8n
 > **Prerequisites**
 >
 > In order to use the lab, you must have, at a minimum, the following installed on your local machine:
-> - `git`
-> - `docker` and `docker compose`
+> - [`git`](https://git-scm.com/downloads)
+> - [`docker`](https://www.docker.com/get-started/) and [`docker compose`](https://www.docker.com/get-started/)
 >
 > *Note: To run the lab locally, you should have >=16GB of System Memory on your machine. It may run on machines with less memory, but performance may be poor.*
 
@@ -18,8 +18,8 @@ This repository is a collection of configuration files that define a single `n8n
 In your terminal/commandline, navigate to the directory you wish to save the lab files to. Then execute the following to clone the repo to your system:
 
 ```bash
-git clone <n8n-lab-repository>
-cd <n8n-lab-repository>
+git clone https://github.com/Codon-Ops/n8n-lab.git
+cd n8n-lab
 ```
 
 2. Start the services
