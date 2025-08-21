@@ -1,0 +1,13 @@
+http://n8n.localhost {
+    handle {
+        reverse_proxy {
+            to n8n:{$N8N_INTERNAL_PORT}
+        }
+    }
+}
+
+http://database.n8n.localhost {
+    reverse_proxy {
+        to pgadmin:{$PGADMIN_INTERNAL_PORT}
+    }
+}
