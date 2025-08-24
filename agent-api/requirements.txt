@@ -1,0 +1,29 @@
+# Agent API Dependencies - Optimized
+# Core Framework
+fastapi>=0.104.0,<1.0.0
+uvicorn[standard]>=0.24.0,<1.0.0
+pydantic>=2.4.0,<3.0.0
+
+# LLM & AI (Core components only)
+langgraph>=0.0.20
+langchain-core>=0.3.74,<1.0.0  # Fixed version conflict
+tiktoken>=0.5.0
+
+# HTTP Client (httpx is sufficient, removing aiohttp)
+httpx>=0.25.0
+
+# Database (for caching)
+aiosqlite>=0.19.0
+
+# Utilities
+python-dotenv>=1.0.0
+python-multipart>=0.0.6
+tenacity>=8.2.0
+
+# Development & Testing
+pytest>=7.4.0
+pytest-asyncio>=0.21.0
+pytest-httpx>=0.26.0
+pytest-mock>=3.11.0
+black>=23.0.0
+faker>=20.0.0

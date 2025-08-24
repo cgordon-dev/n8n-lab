@@ -1,0 +1,9 @@
+{
+  "command": "npx",
+  "args": [
+    "-y",
+    "@modelcontextprotocol/server-filesystem",
+    "${HOME}/Desktop",
+    "${HOME}/Downloads"
+  ]
+}

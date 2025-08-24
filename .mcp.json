@@ -1,0 +1,53 @@
+{
+  "mcpServers": {
+    "shell": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@kevinwatt/shell-mcp"
+      ]
+    },
+    "code-runner": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-server-code-runner@latest"
+      ]
+    },
+    "run-python": {
+      "command": "deno",
+      "args": [
+        "run",
+        "-N",
+        "-R=node_modules",
+        "-W=node_modules",
+        "--node-modules-dir=auto",
+        "jsr:@pydantic/mcp-run-python",
+        "stdio"
+      ]
+    },
+    "playwright": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@playwright/mcp@latest"
+      ]
+    },
+    "postman": {
+      "type": "sse",
+      "url": "https://mcp.postman.com/mcp",
+      "headers": {
+        "Authorization": "Bearer ${POSTMAN_API_KEY}"
+      }
+    },
+    "filesystem": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "${HOME}/Desktop",
+        "${HOME}/Downloads"
+      ]
+    }
+  }
+}

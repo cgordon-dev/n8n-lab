@@ -2,6 +2,7 @@ volumes:
   db_storage:
   n8n_storage:
   dbadmin-data:
+  openwebui_data:
 
 networks:
   n8n:
@@ -55,6 +56,56 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
+
+  agent-api:
+    build:
+      context: ./agent-api
+    container_name: agent-api
+    hostname: agent-api
+    restart: always
+    environment:
+      - OPENROUTER_API_KEY=${OPENROUTER_API_KEY}
+      - N8N_URL=http://n8n:5678
+      - TEMPLATES_SERVICE_URL=http://host.docker.internal:8000
+    ports:
+      - "8001:8001"
+    networks:
+      - n8n
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      - n8n
+      - postgres
+    healthcheck:
+      test: ['CMD-SHELL', 'curl -f http://localhost:8001/health || exit 1']
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  openwebui:
+    image: ghcr.io/open-webui/open-webui:main
+    container_name: openwebui
+    hostname: openwebui
+    restart: always
+    environment:
+      - OPENAI_API_BASE_URL=http://agent-api:8001/v1
+      - OPENAI_API_KEY=${OPENROUTER_API_KEY}
+      - WEBUI_NAME=n8n Workflow Assistant
+      - WEBUI_URL=http://localhost:3000
+      - DEFAULT_MODELS=n8n-workflow-assistant
+    ports:
+      - "3000:8080"
+    volumes:
+      - openwebui_data:/app/backend/data
+    networks:
+      - n8n
+    depends_on:
+      - agent-api
+    healthcheck:
+      test: ['CMD-SHELL', 'curl -f http://localhost:8080/health || exit 1']
+      interval: 30s
+      timeout: 10s
+      retries: 3
 
   pgadmin:
     image: dpage/pgadmin4:7.1

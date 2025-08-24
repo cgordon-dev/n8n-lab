@@ -11,3 +11,9 @@ http://database.n8n.localhost {
         to pgadmin:{$PGADMIN_INTERNAL_PORT}
     }
 }
+
+http://chat.n8n.localhost {
+    reverse_proxy {
+        to openwebui:8080
+    }
+}
