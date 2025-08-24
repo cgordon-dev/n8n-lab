@@ -140,4 +140,77 @@ For detailed information, see:
 - `API_GUIDE.md`: Comprehensive API documentation with examples
 - `agent-api/README_TESTING.md`: Testing guide for the agent functionality
 
+## Set up Database Credentials & Admin interface
 
+As part of this lab, you have access to your own Postgres database and an administration tool called PgAdmin. PgAdmin provides a user interface that allows you to explore your database, run queries, and perform general administrative tasks.
+
+Your N8N instance uses Postgres to save your credentials, past executions, and workflows. You can also use it for any applications you build.
+
+### Set up Postgres Credentials in N8N
+
+1. Go to http://n8n.localhost/home/workflows
+
+2. Click on `Credentials` and then `Add first credential`:
+
+> **Note**: If you already have credentials added, go to the `Create_Workflow` button in the top right-hand corner, click the drop-down arrow, then click `Create Credential`
+
+![n8n Workflows Page](/assets/AddCredential-1.jpg)
+
+3. Search for and select `Postgres`:
+
+![n8n add credentials](/assets/AddCredential-2.jpg)
+
+4. When the `Connection` dialogue comes up, fill in the connection details for the database:
+
+* Host: `postgres`
+* Database: `n8n`
+* User: `kura`
+* Password: `password`
+
+> **Note**: You will only need to fill in these fields. Leave everything else as-is.
+
+![n8n Postgres Credential Log](/assets/AddCredential-3.jpg)
+
+5. Save the credentials and take note of the connection test. After saving your credentials, you should see a connection result like the screen below:
+
+![n8n Postgres Credential Success](/assets/AddCredential-4.jpg)
+
+
+Now you've saved your database credentials to your n8n instance! Next we'll set up PgAdmin so you can interact directly with the database. 
+
+### Set up PgAdmin
+
+1. Go to http://database.n8n.localhost and login using the credentials below:
+
+* Username: `student@kuralabs.com`
+* Password: `password`
+
+![PgAdmin Login Page](/assets/PgAdmin-1.jpg)
+
+2. Once you're logged in, go to the top left corner to `Servers`. Right-click that, then go to `Register` -> `Server...`:
+
+![PgAdmin Login Page](/assets/PgAdmin-2.jpg)
+
+3. You should be on the `General` tab in the `Register Server` dialog. Give your server a memorable name - this is the label that will be used in the UI when you want to check your database:
+
+![PgAdmin Login Page](/assets/PgAdmin-3.jpg)
+
+4. In that same dialog box, click on the `Connection` tab, fill in the database credentials like you did before, and then click `Save`:
+
+* Host name/address: `postgres`
+* Maintenance Database: `n8n`
+* Username: `kura`
+* Password: `password`
+
+![PgAdmin Login Page](/assets/PgAdmin-4.jpg)
+
+5. Now you have successfully connected PgAdmin to your database and can view the tables in there using the `Object Explorer` in the left-hand corner:
+
+![PgAdmin Login Page](/assets/PgAdmin-5.jpg)
+
+That's it for the database connections - you're all set!
+
+## Useful links
+
+* `n8n`: http://n8n.localhost
+* `n8n database admin tool`: http://database.n8n.localhost
